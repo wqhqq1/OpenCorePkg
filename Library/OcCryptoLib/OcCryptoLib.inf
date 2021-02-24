@@ -63,3 +63,4 @@
   BaseMemoryLib
   BaseLib
   UefiLib
+  PrintLib
