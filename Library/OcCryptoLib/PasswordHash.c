@@ -17,6 +17,7 @@ WITHOUT WARRANTIES OR REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED.
 #include <Library/DebugLib.h>
 #include <Library/OcGuardLib.h>
 #include <Library/OcCryptoLib.h>
+#include <Library/OcPrintLib.h>
 
 VOID
 OcHashPasswordSha512 (
@@ -88,6 +89,9 @@ OcVerifyPasswordSha512 (
 
   OcHashPasswordSha512 (Password, PasswordSize, Salt, SaltSize, VerifyHash);
   Result = SecureCompareMem (RefHash, VerifyHash, SHA512_DIGEST_SIZE) == 0;
+  UINT8 Index;
+  for(Index = 0; Index<SHA512_DIGEST_SIZE; Index++)
+    Print(VerifyHash[Index]);
   SecureZeroMem (VerifyHash, SHA512_DIGEST_SIZE);
 
   return Result;
