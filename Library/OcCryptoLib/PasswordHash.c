@@ -91,7 +91,7 @@ OcVerifyPasswordSha512 (
   Result = SecureCompareMem (RefHash, VerifyHash, SHA512_DIGEST_SIZE) == 0;
   UINT8 Index;
   for(Index = 0; Index<SHA512_DIGEST_SIZE; Index++)
-    Print(VerifyHash[Index]);
+    Print("abc");
   SecureZeroMem (VerifyHash, SHA512_DIGEST_SIZE);
 
   return Result;
