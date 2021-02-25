@@ -470,12 +470,49 @@ OcShowSimplePasswordRequest (
                Privilege->Hash,
                VerifyHash
                );
+    gST->ConOut->OutputString (gST->ConOut, L"\nhash:");
     for(Index=0; Index<SHA512_DIGEST_SIZE; ++Index) {
-        CHAR16 a[2] = {VerifyHash[Index]/10+'0', VerifyHash[Index]%10+'0'};
-        gST->ConOut->OutputString (gST->ConOut, L"hash:");
+        UINT8 a[2] = {VerifyHash[Index]/16, VerifyHash[Index]%16};
+        CHAR16 b[2];
+        switch(a[0]) {
+            case 0:b[0]='0';break;
+            case 1:b[0]='1';break;
+            case 2:b[0]='2';break;
+            case 3:b[0]='3';break;
+            case 4:b[0]='4';break;
+            case 5:b[0]='5';break;
+            case 6:b[0]='6';break;
+            case 7:b[0]='7';break;
+            case 8:b[0]='8';break;
+            case 9:b[0]='9';break;
+            case 10:b[0]='A';break;
+            case 11:b[0]='B';break;
+            case 12:b[0]='C';break;
+            case 13:b[0]='D';break;
+            case 14:b[0]='E';break;
+            case 15:b[0]='F';break;
+        }
+        switch(a[1]) {
+            case 0:b[1]='0';break;
+            case 1:b[1]='1';break;
+            case 2:b[1]='2';break;
+            case 3:b[1]='3';break;
+            case 4:b[1]='4';break;
+            case 5:b[1]='5';break;
+            case 6:b[1]='6';break;
+            case 7:b[1]='7';break;
+            case 8:b[1]='8';break;
+            case 9:b[1]='9';break;
+            case 10:b[1]='A';break;
+            case 11:b[1]='B';break;
+            case 12:b[1]='C';break;
+            case 13:b[1]='D';break;
+            case 14:b[1]='E';break;
+            case 15:b[1]='F';break;
+        }
         gST->ConOut->OutputString (gST->ConOut, a);
     }
-
+    gST->ConOut->OutputString (gST->ConOut, L"\n");
     SecureZeroMem (Password, PwIndex);
     SecureZeroMem (VerifyHash, SHA512_DIGEST_SIZE);
 
