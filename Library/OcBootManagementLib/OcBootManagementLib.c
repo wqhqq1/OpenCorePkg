@@ -461,6 +461,7 @@ OcShowSimplePasswordRequest (
       ++PwIndex;
     }
     UINT8 VerifyHash[SHA512_DIGEST_SIZE];
+    UINT32 Index;
 
     Result = OcVerifyPasswordSha512 (
                Password,
@@ -470,8 +471,12 @@ OcShowSimplePasswordRequest (
                Privilege->Hash,
                VerifyHash
                );
+    for(Index=0; Index<SHA512_DIGEST_SIZE; ++Index) {
+        DEBUG(("SHA512:%d", VerifyHash[Index]));
+    }
 
     SecureZeroMem (Password, PwIndex);
+    SecureZeroMem (VerifyHash, SHA512_DIGEST_SIZE);
 
     if (Result) {
       gST->ConOut->ClearScreen (gST->ConOut);
