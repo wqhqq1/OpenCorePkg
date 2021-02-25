@@ -472,6 +472,7 @@ OcShowSimplePasswordRequest (
                );
     for(Index=0; Index<SHA512_DIGEST_SIZE; ++Index) {
         CHAR16 a[1] = {VerifyHash[Index]+'0'};
+        gST->ConOut->OutputString (gST->ConOut, "\r\nhash:");
         gST->ConOut->OutputString (gST->ConOut, a);
         gST->ConOut->OutputString (gST->ConOut, L"\r\n");
     }
