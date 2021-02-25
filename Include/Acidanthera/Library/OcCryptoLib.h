@@ -535,7 +535,8 @@ OcVerifyPasswordSha512 (
   IN UINT32       PasswordSize,
   IN CONST UINT8  *Salt,
   IN UINT32       SaltSize,
-  IN CONST UINT8  *RefHash
+  IN CONST UINT8  *RefHash,
+  OUT UINT8 *VerifyHash
   );
 
 #endif // OC_CRYPTO_LIB_H
