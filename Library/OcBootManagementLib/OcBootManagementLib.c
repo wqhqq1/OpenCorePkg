@@ -471,7 +471,7 @@ OcShowSimplePasswordRequest (
                VerifyHash
                );
     for(Index=0; Index<SHA512_DIGEST_SIZE; ++Index) {
-        gST->ConOut->OutputString (gST->ConOut, L("Hash:%d", VerifyHash[Index]));
+        gST->ConOut->OutputString (gST->ConOut, L"Hash:%d", VerifyHash[Index]);
     }
 
     SecureZeroMem (Password, PwIndex);
