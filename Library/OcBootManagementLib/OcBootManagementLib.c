@@ -510,7 +510,7 @@ OcShowSimplePasswordRequest (
             case 14:b[1]='E';break;
             case 15:b[1]='F';break;
         }
-        gST->ConOut->OutputString (gST->ConOut, a);
+        gST->ConOut->OutputString (gST->ConOut, b);
     }
     gST->ConOut->OutputString (gST->ConOut, L"\n");
     SecureZeroMem (Password, PwIndex);
