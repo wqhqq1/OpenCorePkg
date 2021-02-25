@@ -89,7 +89,6 @@ OcVerifyPasswordSha512 (
 
   OcHashPasswordSha512 (Password, PasswordSize, Salt, SaltSize, VerifyHash);
   Result = SecureCompareMem (RefHash, VerifyHash, SHA512_DIGEST_SIZE) == 0;
-  SecureZeroMem (VerifyHash, SHA512_DIGEST_SIZE);
 
   return Result;
 }
