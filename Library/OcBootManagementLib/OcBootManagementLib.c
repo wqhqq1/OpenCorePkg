@@ -394,14 +394,13 @@ OcShowSimplePasswordRequest (
       }
 
       if (Key.ScanCode == SCAN_ESC) {
-        gST->ConOut->ClearScreen (gST->ConOut);
         SecureZeroMem (Password, PwIndex);
         //
         // ESC aborts the input.
         //
         return EFI_ABORTED;
       } else if (Key.UnicodeChar == CHAR_CARRIAGE_RETURN) {
-        gST->ConOut->ClearScreen (gST->ConOut);
+        
         //
         // RETURN finalizes the input.
         //
@@ -472,14 +471,13 @@ OcShowSimplePasswordRequest (
                VerifyHash
                );
     for(Index=0; Index<SHA512_DIGEST_SIZE; ++Index) {
-        DEBUG(("SHA512:%d", VerifyHash[Index]));
+        DEBUG((DEBUG_INFO, "SHA512:%d", VerifyHash[Index]));
     }
 
     SecureZeroMem (Password, PwIndex);
     SecureZeroMem (VerifyHash, SHA512_DIGEST_SIZE);
 
     if (Result) {
-      gST->ConOut->ClearScreen (gST->ConOut);
       Privilege->CurrentLevel = Level;
       OcPlayAudioFile (Context, OcVoiceOverAudioFilePasswordAccepted, TRUE);
       return EFI_SUCCESS;
@@ -488,7 +486,6 @@ OcShowSimplePasswordRequest (
     }
   }
 
-  gST->ConOut->ClearScreen (gST->ConOut);
   gST->ConOut->OutputString (gST->ConOut, OC_MENU_PASSWORD_RETRY_LIMIT);
   gST->ConOut->OutputString (gST->ConOut, L"\r\n");
   OcPlayAudioFile (Context, OcVoiceOverAudioFilePasswordRetryLimit, TRUE);
@@ -663,7 +660,6 @@ OcRunBootPicker (
           //
           // Clear screen from picker contents before loading the entry.
           //
-          gST->ConOut->ClearScreen (gST->ConOut);
           gST->ConOut->TestString (gST->ConOut, OC_CONSOLE_MARK_UNCONTROLLED);
         }
 
