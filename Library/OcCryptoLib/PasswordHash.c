@@ -77,11 +77,11 @@ OcVerifyPasswordSha512 (
   IN UINT32       PasswordSize,
   IN CONST UINT8  *Salt,
   IN UINT32       SaltSize,
-  IN CONST UINT8  *RefHash
+  IN CONST UINT8  *RefHash,
+  OUT UINT8 *VerifyHash
   )
 {
   BOOLEAN Result;
-  UINT8   VerifyHash[SHA512_DIGEST_SIZE];
 
   ASSERT (Password != NULL);
   ASSERT (PasswordSize > 0);
@@ -89,9 +89,6 @@ OcVerifyPasswordSha512 (
 
   OcHashPasswordSha512 (Password, PasswordSize, Salt, SaltSize, VerifyHash);
   Result = SecureCompareMem (RefHash, VerifyHash, SHA512_DIGEST_SIZE) == 0;
-  UINT8 Index;
-  for(Index = 0; Index<SHA512_DIGEST_SIZE; Index++)
-    Print("abc");
   SecureZeroMem (VerifyHash, SHA512_DIGEST_SIZE);
 
   return Result;
