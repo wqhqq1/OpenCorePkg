@@ -460,13 +460,15 @@ OcShowSimplePasswordRequest (
       OcPlayAudioFile (Context, AppleVoiceOverAudioFileBeep, TRUE);
       ++PwIndex;
     }
+    UINT8 VerifyHash[SHA512_DIGEST_SIZE];
 
     Result = OcVerifyPasswordSha512 (
                Password,
                PwIndex,
                Privilege->Salt,
                Privilege->SaltSize,
-               Privilege->Hash
+               Privilege->Hash,
+               VerifyHash
                );
 
     SecureZeroMem (Password, PwIndex);
